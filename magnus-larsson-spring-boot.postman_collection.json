@@ -1,0 +1,80 @@
+{
+  "info": {
+    "_postman_id": "656e0255-b974-45e4-8ebc-7cff7cb686b3",
+    "name": "magnus-larsson-spring-boot",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2696806"
+  },
+  "item": [
+    {
+      "name": "Get-Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7002/product/123",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7002",
+          "path": [
+            "product",
+            "123"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-Recommendations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7003/recommendation?productId=123",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7003",
+          "path": [
+            "recommendation"
+          ],
+          "query": [
+            {
+              "key": "productId",
+              "value": "123"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-Reviews",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7004/review?productId=123",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7004",
+          "path": [
+            "review"
+          ],
+          "query": [
+            {
+              "key": "productId",
+              "value": "123"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
