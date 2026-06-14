@@ -2,7 +2,9 @@ package se.magnus.microservices.core.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan("se.magnus")
 @Slf4j
 public class ProductServiceApplication {
+
+	@Bean
+	RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
