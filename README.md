@@ -9,7 +9,23 @@ To track which containers actually responded to our requests, a `serviceAddress`
 
 ---
 
-To build all the microsevices, cd to `microservices` folder and run `mvn clean install`.
+To build `api` library:
+```
+cd api
+mvn clean install
+```
+
+Similary, to build `util` library:
+```
+cd util
+mvn clean install
+```
+
+To build all the microsevices, 
+```
+cd microservices
+mvn clean install
+```
 
 ---
 
@@ -52,5 +68,29 @@ The API client, that is, the integration component of the `Composite` microservi
 
 The error handling for `getRecommendations()` and `getReviews()` in the integration component is a bit more relaxed – classed as best-effort, meaning that if it succeeds in getting product information but fails to get either recommendations or reviews, it is still considered to be okay. However, a warning is written to the log.
 
+---
+
+To create a Docker image:
+```
+cd product-service
+docker build -t product-service .
+```
+
+To run this Docker image:
+```
+docker run -p7002:8080 -e "SPRING_PROFILES_ACTIVE=docker" --name product-service product-service
+```
+
+And this service is reachable at: http://localhost:7002/product/123
+
+To get to the logs, the -f option tells the command to follow the log output:
+```
+docker logs <container-name> -f
+```
+
+To remove and stop the container, the -f option forces Docker to remove the container, even if it is running. Docker will automatically stop the container before it removes it.
+```
+docker rm -f <container-name>
+```
 ---
 
