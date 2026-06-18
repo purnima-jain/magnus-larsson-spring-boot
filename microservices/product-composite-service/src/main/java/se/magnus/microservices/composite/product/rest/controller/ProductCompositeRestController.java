@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import se.magnus.composite.product.api.rest.response.ProductAggregateResponseDto;
 import se.magnus.composite.product.api.rest.response.RecommendationSummaryResponseDto;
 import se.magnus.composite.product.api.rest.response.ReviewSummaryResponseDto;
+import se.magnus.composite.product.api.rest.response.ServiceAddressesResponseDto;
 import se.magnus.microservices.composite.product.domain.model.ProductAggregate;
+import se.magnus.microservices.composite.product.domain.model.ServiceAddresses;
 import se.magnus.microservices.composite.product.domain.service.ProductCompositeService;
 import se.magnus.util.http.ServiceUtil;
 
@@ -46,13 +48,16 @@ public class ProductCompositeRestController {
 				review.getSubject()))
 			.toList();
 
+		ServiceAddresses serviceAddresses = productAggregate.getServiceAddresses();
+		ServiceAddressesResponseDto serviceAddressesResponseDto = new ServiceAddressesResponseDto(serviceUtil.getServiceAddress(), serviceAddresses.getPro(), serviceAddresses.getRev(), serviceAddresses.getRec());
+		
 		ProductAggregateResponseDto productAggregateResponseDto = new ProductAggregateResponseDto(
 				productAggregate.getProductId(),
 				productAggregate.getName(),
 				productAggregate.getWeight(),
 				recommendationResponseList,
 				reviewResponseList,
-				serviceUtil.getServiceAddress());
+				serviceAddressesResponseDto);
 
 		return productAggregateResponseDto;
 	}

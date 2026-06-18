@@ -9,6 +9,7 @@ import se.magnus.api.rest.exceptions.NotFoundException;
 import se.magnus.microservices.composite.product.domain.model.ProductAggregate;
 import se.magnus.microservices.composite.product.domain.model.RecommendationSummary;
 import se.magnus.microservices.composite.product.domain.model.ReviewSummary;
+import se.magnus.microservices.composite.product.domain.model.ServiceAddresses;
 import se.magnus.microservices.composite.product.domain.service.ProductCompositeService;
 import se.magnus.product.api.rest.response.ProductResponseDto;
 import se.magnus.recommendation.api.rest.response.RecommendationResponseDto;
@@ -18,7 +19,7 @@ import se.magnus.review.api.rest.response.ReviewResponseDto;
 public class ProductCompositeServiceImpl implements ProductCompositeService {
 
 	private ProductCompositeIntegrationService productCompositeIntegrationService;
-
+	
 	public ProductCompositeServiceImpl(ProductCompositeIntegrationService productCompositeIntegrationService) {
 		this.productCompositeIntegrationService = productCompositeIntegrationService;
 	}
@@ -33,13 +34,19 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 		List<RecommendationResponseDto> recommendationResponseDtoList = productCompositeIntegrationService.getRecommendations(productId);
 
 		List<ReviewResponseDto> reviewResponseDtoList = productCompositeIntegrationService.getReviews(productId);
+		
+		// 4. Create info regarding the involved microservices addresses
+	    String productAddress = productResponseDto.getServiceAddress();
+	    String reviewAddress = (reviewResponseDtoList != null && reviewResponseDtoList.size() > 0) ? reviewResponseDtoList.get(0).getServiceAddress() : "";
+	    String recommendationAddress = (recommendationResponseDtoList != null && recommendationResponseDtoList.size() > 0) ? recommendationResponseDtoList.get(0).getServiceAddress() : "";
+	    ServiceAddresses serviceAddresses = new ServiceAddresses(null, productAddress, reviewAddress, recommendationAddress);
 
-		return createProductAggregate(productResponseDto, recommendationResponseDtoList, reviewResponseDtoList);
+		return createProductAggregate(productResponseDto, recommendationResponseDtoList, reviewResponseDtoList, serviceAddresses);
 
 	}
 
 	private ProductAggregate createProductAggregate(ProductResponseDto productResponseDto, List<RecommendationResponseDto> recommendationResponseDtoList,
-			List<ReviewResponseDto> reviewResponseDtoList) {
+			List<ReviewResponseDto> reviewResponseDtoList, ServiceAddresses serviceAddresses) {
 
 		// 1. Setup product info
 		int productId = productResponseDto.getProductId();
@@ -58,7 +65,7 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 				.map(r -> new ReviewSummary(r.getReviewId(), r.getAuthor(), r.getSubject()))
 				.collect(Collectors.toList());
 
-		return new ProductAggregate(productId, name, weight, recommendationSummaries, reviewSummaries);
+		return new ProductAggregate(productId, name, weight, recommendationSummaries, reviewSummaries, serviceAddresses);
 	}
 
 }

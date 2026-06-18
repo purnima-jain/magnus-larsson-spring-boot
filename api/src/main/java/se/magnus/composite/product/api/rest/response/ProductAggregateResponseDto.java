@@ -13,6 +13,6 @@ public class ProductAggregateResponseDto {
 	private final List<RecommendationSummaryResponseDto> recommendations;
 	private final List<ReviewSummaryResponseDto> reviews;
 	
-	private final String serviceAddress;
+	private final ServiceAddressesResponseDto serviceAddresses;
 
 }

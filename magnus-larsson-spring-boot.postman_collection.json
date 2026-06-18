@@ -75,6 +75,26 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Get-Product-Aggregate",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7001/product-composite/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7001",
+          "path": [
+            "product-composite",
+            "1"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

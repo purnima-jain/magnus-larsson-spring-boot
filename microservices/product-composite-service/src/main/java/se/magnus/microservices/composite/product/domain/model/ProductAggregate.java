@@ -12,5 +12,7 @@ public class ProductAggregate {
 	private final int weight;
 	private final List<RecommendationSummary> recommendations;
 	private final List<ReviewSummary> reviews;
+	
+	private final ServiceAddresses serviceAddresses;
 
 }
