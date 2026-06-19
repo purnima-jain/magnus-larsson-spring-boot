@@ -82,15 +82,15 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:7001/product-composite/1",
+          "raw": "http://localhost:8080/product-composite/123",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "7001",
+          "port": "8080",
           "path": [
             "product-composite",
-            "1"
+            "123"
           ]
         }
       },

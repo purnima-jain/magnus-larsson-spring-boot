@@ -1,5 +1,14 @@
 @echo off
 
+REM Cleanup - START
+rmdir /S /Q "api\target"
+rmdir /S /Q "util\target"
+rmdir /S /Q "microservices\product-service\target"
+rmdir /S /Q "microservices\recommendation-service\target"
+rmdir /S /Q "microservices\review-service\target"
+rmdir /S /Q "microservices\product-composite-service\target"
+REM Cleanup - END
+
 REM Building Libraries - START
 
 cd "api"
