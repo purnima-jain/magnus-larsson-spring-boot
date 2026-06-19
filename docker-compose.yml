@@ -1,0 +1,26 @@
+services:
+  product: # The name of the microservice. This will also be the hostname of the container in the internal Docker network.
+    build: microservices/product-service # specifies where to find the Dockerfile that was used to build the Docker image.
+    mem_limit: 512m
+    environment: # Environment Variables to be setup for this container
+      - SPRING_PROFILES_ACTIVE=docker # The Spring Profile to be used
+
+  recommendation:
+    build: microservices/recommendation-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  review:
+    build: microservices/review-service
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  product-composite:
+    build: microservices/product-composite-service
+    mem_limit: 512m
+    ports:
+      - "8080:8080" # Expose its port so it can be reached from outside Docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker

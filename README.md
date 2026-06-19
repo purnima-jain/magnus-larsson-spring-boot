@@ -21,7 +21,7 @@ cd util
 mvn clean install
 ```
 
-To build all the microsevices, 
+To build all the microsevices, (but do not do this, it messes up the order. We want the three jars to be built before promduct-composite jar, and this command does not enforces the order):
 ```
 cd microservices
 mvn clean install
@@ -92,5 +92,28 @@ To remove and stop the container, the -f option forces Docker to remove the cont
 ```
 docker rm -f <container-name>
 ```
+
 ---
+
+To build all the images via docker-compose, go to the root folder where `docker-compose.yml` exists, and run
+```
+docker compose build
+```
+
+To start all the containers with a single command, `-d` is for detached mode
+```
+docker compose up -d
+```
+
+And now you can access product-composite at `http://localhost:8080/product-composite/123`
+
+To bring everything down:
+
+```
+docker compose down
+```
+
+---
+
+
 
