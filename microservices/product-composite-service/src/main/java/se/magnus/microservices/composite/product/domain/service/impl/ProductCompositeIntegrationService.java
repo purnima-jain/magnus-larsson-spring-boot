@@ -72,7 +72,10 @@ public class ProductCompositeIntegrationService {
 			case NOT_FOUND:
 				throw new NotFoundException(getErrorMessage(ex));
 
-			case UNPROCESSABLE_ENTITY:
+//			case UNPROCESSABLE_ENTITY:
+//				throw new InvalidInputException(getErrorMessage(ex));
+				
+			case UNPROCESSABLE_CONTENT:
 				throw new InvalidInputException(getErrorMessage(ex));
 
 			default:

@@ -8,12 +8,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.extern.slf4j.Slf4j;
+import se.magnus.api.rest.exceptions.BadRequestException;
 import se.magnus.api.rest.exceptions.InvalidInputException;
 import se.magnus.api.rest.exceptions.NotFoundException;
 
 @RestControllerAdvice
 @Slf4j
 public class GlobalControllerExceptionHandler {
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(BadRequestException.class)
+	public @ResponseBody HttpErrorInfo handleBadRequestExceptions(ServerHttpRequest request, BadRequestException ex) {
+
+		return createHttpErrorInfo(HttpStatus.BAD_REQUEST, request, ex);
+	}
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(NotFoundException.class)
@@ -22,11 +30,11 @@ public class GlobalControllerExceptionHandler {
 		return createHttpErrorInfo(HttpStatus.NOT_FOUND, request, ex);
 	}
 
-	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+	@ResponseStatus(HttpStatus.UNPROCESSABLE_CONTENT)
 	@ExceptionHandler(InvalidInputException.class)
 	public @ResponseBody HttpErrorInfo handleInvalidInputException(ServerHttpRequest request, InvalidInputException ex) {
 
-		return createHttpErrorInfo(HttpStatus.UNPROCESSABLE_ENTITY, request, ex);
+		return createHttpErrorInfo(HttpStatus.UNPROCESSABLE_CONTENT, request, ex);
 	}
 
 	private HttpErrorInfo createHttpErrorInfo(HttpStatus httpStatus, ServerHttpRequest request, Exception ex) {

@@ -64,6 +64,14 @@
 		</dependency>
 		<!-- Local Library - util - END -->
 
+		<!-- OpenAPI Specification - START -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<!-- OpenAPI Specification - END -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator-test</artifactId>

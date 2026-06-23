@@ -115,5 +115,14 @@ docker compose down
 
 ---
 
+We are adding OpenAPI Specification only for the `product-composite-service` microservice because that is the only one which is externally accessible.
+
+---
+
+To browse the OpenAPI documentation, we will use the embedded Swagger UI viewer. If we open the http://localhost:8080/openapi/swagger-ui.html URL in a web browser.
+
+It contains general information we specified in the springdoc-openapi OpenAPI bean and a link to the actual OpenAPI document (the json), /openapi/v3/api-docs, pointing to http://localhost:8080/openapi/v3/api-docs. Note that this is the link to the OpenAPI document that can be exported to an API gateway,
+
+---
 
 
