@@ -125,4 +125,42 @@ It contains general information we specified in the springdoc-openapi OpenAPI be
 
 ---
 
+The `product` and `recommendation` microservices will use Spring Data for MongoDB and the `review` microservice will use Spring Data for the Java Persistence API (JPA) to access a MySQL database.
+
+To access the databases manually, we will use the CLI tools provided in the Docker images used to run the databases. We will also expose the standard ports used for each database in Docker Compose, `3306` for MySQL, and `27017` for MongoDB. This will enable us to use our favorite database tools for accessing the databases in the same way as if they were running locally on our computers.
+
+---
+
+When we run MongoDB as a Docker container, we can run queries from the CLI like this:
+```
+docker compose exec mongodb mongosh product-db --quiet --eval "db.products.find()"
+```
+
+---
+
+When we run MySQL as a Docker container, we can run queries from the CLI like this:
+```
+docker compose exec mysql mysql -uuser -p review-db -e "select * from reviews"
+```
+
+---
+
+MapStruct, a Java bean mapping tool, makes it easy to transform between Spring Data entity objects and the API model classes.
+
+---
+
+The entity classes are similar to the corresponding API model classes in terms of what fields they contain. We will add two fields, `id` and `version`, in the entity classes compared to the API model classes.
+
+**`id`** </br>
+The `id` field is used to hold the database identity of each stored entity, corresponding to the primary key when using a relational database. </br>
+We will delegate the responsibility of generating unique values for the `id` field to Spring Data. </br>
+Depending on the database used, Spring Data can delegate this responsibility to the database engine or handle it on its own. In either case, the application code does not need to consider how a unique database `id` value is set. </br>
+The `id` field is not exposed in the API, as a best practice from a security perspective. </br>
+The fields in the model classes that identify an entity will be assigned a unique index in the corresponding entity class, to ensure consistency in the database from a business perspective.</br>
+
+**`version`** </br>
+The `version` field is used to implement optimistic locking, allowing Spring Data to verify that updates of an entity in the database do not overwrite a concurrent update. </br>
+If the value of the `version` field stored in the database is higher than the value of the `version` field in an update request, this indicates that the update is performed on stale data—the information to be updated has been updated by someone else since it was read from the database. Attempts to perform updates based on stale data will be prevented by Spring Data.</br>
+
+---
 

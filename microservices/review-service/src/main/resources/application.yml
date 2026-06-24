@@ -4,6 +4,10 @@ server.port: 7004
 
 server.error.include-message: always
 
+# Strongly recommend to set this property to "none" in a production environment!
+# This configuration is also required for PersistenceTests annotated with @DataJpaTest
+spring.jpa.hibernate.ddl-auto: update
+
 logging:
   level:
     root: INFO
