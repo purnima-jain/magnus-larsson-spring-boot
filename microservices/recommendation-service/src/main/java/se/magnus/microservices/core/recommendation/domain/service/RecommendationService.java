@@ -8,4 +8,8 @@ public interface RecommendationService {
 
 	public List<Recommendation> getRecommendations(int productId);
 
+	public Recommendation createRecommendation(Recommendation recommendation);
+
+	public void deleteRecommendations(int productId);
+
 }

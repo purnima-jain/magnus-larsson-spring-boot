@@ -1,12 +1,16 @@
 package se.magnus.microservices.core.product.domain.model;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
-	private final int productId;
-	private final String name;
-	private final int weight;
-	
+	private int productId;
+	private String name;
+	private int weight;
+
 }

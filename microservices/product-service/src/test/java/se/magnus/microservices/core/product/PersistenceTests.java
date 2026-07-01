@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.mongodb.test.autoconfigure.DataMongoTest;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -132,10 +131,10 @@ class PersistenceTests extends MongoDbTestBase {
 
 	private Pageable testNextPage(Pageable nextPage, String expectedProductIds, boolean expectsNextPage) {
 		Page<ProductEntity> productPage = repository.findAll(nextPage);
-		
+
 		assertEquals(expectedProductIds, productPage.getContent().stream().map(p -> p.getProductId()).collect(Collectors.toList()).toString());
 		assertEquals(expectsNextPage, productPage.hasNext());
-		
+
 		return productPage.nextPageable(); // returns the next page
 	}
 

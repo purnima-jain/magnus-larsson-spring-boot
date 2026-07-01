@@ -1,13 +1,17 @@
 package se.magnus.product.api.rest.response;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductResponseDto {
 
-	private final int productId;
-	private final String name;
-	private final int weight;
-	private final String serviceAddress;
+	private int productId;
+	private String name;
+	private int weight;
+	private String serviceAddress;
 
 }

@@ -2,18 +2,15 @@ package se.magnus.review.api.rest.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ReviewResponseDto {
+public class ReviewRequestDto {
 
 	private int productId;
 	private int reviewId;
 	private String author;
 	private String subject;
 	private String content;
-	private String serviceAddress;
 
 }

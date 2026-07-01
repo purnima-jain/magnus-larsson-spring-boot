@@ -4,9 +4,9 @@ import java.time.ZonedDateTime;
 
 import org.springframework.http.HttpStatus;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class HttpErrorInfo {
 
 	private final ZonedDateTime timestamp;

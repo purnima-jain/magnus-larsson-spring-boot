@@ -1,12 +1,21 @@
 package se.magnus.microservices.composite.product.domain.model;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@Data
+@AllArgsConstructor
 public class RecommendationSummary {
 
-	private final int recommendationId;
-	private final String author;
-	private final int rate;
+	private int recommendationId;
+	private String author;
+	private int rate;
+	private String content;
+
+	public RecommendationSummary(String author, int rate, String content) {
+		this.author = author;
+		this.rate = rate;
+		this.content = content;
+	}
 
 }

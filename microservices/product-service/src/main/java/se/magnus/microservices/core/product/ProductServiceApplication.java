@@ -2,6 +2,7 @@ package se.magnus.microservices.core.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,13 @@ public class ProductServiceApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductServiceApplication.class, args);
+		// SpringApplication.run(ProductServiceApplication.class, args);
+
+		ConfigurableApplicationContext ctx = SpringApplication.run(ProductServiceApplication.class, args);
+		String mongodDbHost = ctx.getEnvironment().getProperty("spring.mongodb.host");
+		String mongodDbPort = ctx.getEnvironment().getProperty("spring.mongodb.port");
+		log.info("Connected to MongoDb: " + mongodDbHost + ":" + mongodDbPort);
+
 		log.info("Starting ProductServiceApplication...............");
 	}
 

@@ -1,8 +1,8 @@
 package se.magnus.composite.product.api.rest.response;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class ReviewSummaryResponseDto {
 	private final int reviewId;
 	private final String author;

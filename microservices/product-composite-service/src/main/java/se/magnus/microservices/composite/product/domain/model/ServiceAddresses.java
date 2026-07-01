@@ -1,13 +1,17 @@
 package se.magnus.microservices.composite.product.domain.model;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ServiceAddresses {
 
-	private final String cmp;
-	private final String pro;
-	private final String rev;
-	private final String rec;
+	private String cmp;
+	private String pro;
+	private String rev;
+	private String rec;
 
 }

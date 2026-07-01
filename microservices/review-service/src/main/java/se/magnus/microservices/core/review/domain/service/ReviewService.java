@@ -8,4 +8,8 @@ public interface ReviewService {
 
 	List<Review> getReviews(int productId);
 
+	Review createReview(Review review);
+
+	void deleteReviews(int productId);
+
 }

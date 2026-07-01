@@ -2,6 +2,7 @@ package se.magnus.microservices.core.recommendation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 public class RecommendationServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RecommendationServiceApplication.class, args);
+		// SpringApplication.run(RecommendationServiceApplication.class, args);
+
+		ConfigurableApplicationContext ctx = SpringApplication.run(RecommendationServiceApplication.class, args);
+		String mongodDbHost = ctx.getEnvironment().getProperty("spring.mongodb.host");
+		String mongodDbPort = ctx.getEnvironment().getProperty("spring.mongodb.port");
+		log.info("Connected to MongoDb: " + mongodDbHost + ":" + mongodDbPort);
+
 		log.info("Starting RecommendationServiceApplication...............");
 	}
 

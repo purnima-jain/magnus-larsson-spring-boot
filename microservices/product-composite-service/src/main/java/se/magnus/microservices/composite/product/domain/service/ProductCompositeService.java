@@ -6,4 +6,8 @@ public interface ProductCompositeService {
 
 	ProductAggregate getProduct(int productId);
 
+	ProductAggregate createCompositeProduct(ProductAggregate productAggregate);
+
+	void deleteProduct(int productId);
+
 }

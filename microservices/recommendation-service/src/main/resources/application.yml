@@ -1,15 +1,21 @@
 spring.application.name: recommendation-service
-
 server.port: 7003
-
 server.error.include-message: always
+
+spring.mongodb:
+  host: localhost
+  port: 27017
+  database: recommendation-db
+  auto-index-creation: true
 
 logging:
   level:
     root: INFO
-    se.magnus.microservices: DEBUG
+    se.magnus: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
 
 ---
 
 spring.config.activate.on-profile: docker
-server.port: 8080    
+server.port: 8080
+spring.mongodb.host: mongodb

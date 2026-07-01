@@ -164,3 +164,41 @@ If the value of the `version` field stored in the database is higher than the va
 
 ---
 
+**The MongoDB and MySQL CLI tools**
+
+Each database Docker container comes with CLI-based tools that can be used to query the database tables and collections. To be able to run the database CLI tools, the Docker Compose `exec` command can be used.
+
+To start the MongoDB CLI tool, `mongo`, inside the `mongodb` container, run the following command:
+```
+docker compose exec mongodb mongosh ––quiet
+```
+Enter `exit` to leave the `mongo` CLI.
+
+Look up the content in the `product` service, that is, the `products` collection in MongoDB, with the following command:
+```
+docker compose exec mongodb mongosh product-db --quiet --eval "db.products.find()"
+```
+
+Look up the content in the `recommendation` service, that is, the `recommendations` collection in MongoDB, with the following command:
+```
+docker compose exec mongodb mongosh recommendation-db --quiet --eval "db.recommendations.find()"
+```
+
+
+To start the MySQL CLI tool, `mysql`, inside the `mysql` container and log in to `review-db` using the user created at startup, run the following command:
+```
+docker compose exec mysql mysql -uuser -p review-db
+```
+The `mysql` CLI tool will prompt you for a password; you can find it in the `docker-compose.yml` file. Look for the value of the `MYSQL_PASSWORD` environment variable.
+
+Look up the content in the `review` service, that is, the `reviews` table in MySQL, with the following command:
+```
+docker compose exec mysql mysql -uuser -p review-db -e "select * from reviews"
+```
+The `mysql` CLI tool will prompt you for a password; you can find it in the `docker-compose.yml` file. Look for the value of the `MYSQL_PASSWORD` environment variable.
+
+Enter `exit` to leave the `mysql` CLI.
+
+---
+
+
